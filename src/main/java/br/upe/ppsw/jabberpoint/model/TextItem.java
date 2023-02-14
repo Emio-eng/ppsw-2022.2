@@ -20,6 +20,9 @@ public class TextItem extends SlideItem {
   private String text;
 
   private static final String EMPTYTEXT = "No Text Given";
+  public final static int WIDTH = 1200;
+  public final static int HEIGHT = 800;
+
 
   public TextItem(int level, String string) {
     super(level);
@@ -98,7 +101,7 @@ public class TextItem extends SlideItem {
     FontRenderContext frc = g2d.getFontRenderContext();
     LineBreakMeasurer measurer = new LineBreakMeasurer(attrStr.getIterator(), frc);
 
-    float wrappingWidth = (Slide.WIDTH - s.indent) * scale;
+    float wrappingWidth = (WIDTH - s.indent) * scale;
 
     while (measurer.getPosition() < getText().length()) {
       TextLayout layout = measurer.nextLayout(wrappingWidth);
