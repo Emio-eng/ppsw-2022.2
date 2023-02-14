@@ -13,7 +13,7 @@ import javax.swing.JFrame;
 import br.upe.ppsw.jabberpoint.model.Presentation;
 import br.upe.ppsw.jabberpoint.model.Slide;
 import br.upe.ppsw.jabberpoint.model.SlideItem;
-import br.upe.ppsw.jabberpoint.model.Style;
+import br.upe.ppsw.jabberpoint.style.Style;
 
 public class SlideViewerComponent extends JComponent {
   private static final long serialVersionUID = 227L;
