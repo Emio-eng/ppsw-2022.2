@@ -7,7 +7,7 @@ import br.upe.ppsw.jabberpoint.interfaces.Accessor;
 
 public class DemoPresentation implements Accessor {
 
-  public void loadFile(Presentation presentation, String unusedFilename)
+  public Presentation loadFile(Presentation presentation, String unusedFilename)
       throws FileNotFoundException {
 
     presentation.setTitle("Apresentação de Demonstração");
@@ -48,6 +48,7 @@ public class DemoPresentation implements Accessor {
     slide.append(
         new BitmapItem(1, ResourceUtils.getFile("classpath:JabberPoint.jpg").getAbsolutePath()));
     presentation.append(slide);
+    return presentation;
   }
 
   public void saveFile(Presentation presentation, String unusedFilename) {

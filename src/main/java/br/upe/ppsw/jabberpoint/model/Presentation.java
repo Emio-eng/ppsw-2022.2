@@ -8,16 +8,10 @@ public class Presentation {
 
   private String title;
   private ArrayList<Slide> showList = null;
-  private SlideViewerComponent slideViewComponent = null;
   private int currentSlideNumber = 0;
 
   public Presentation() {
-    slideViewComponent = null;
-    clear();
-  }
-
-  public Presentation(SlideViewerComponent slideViewerComponent) {
-    this.slideViewComponent = slideViewerComponent;
+    
     clear();
   }
 
@@ -33,19 +27,12 @@ public class Presentation {
     title = nt;
   }
 
-  public void setShowView(SlideViewerComponent slideViewerComponent) {
-    this.slideViewComponent = slideViewerComponent;
-  }
-
   public int getSlideNumber() {
     return currentSlideNumber;
   }
 
   public void setSlideNumber(int number) {
     currentSlideNumber = number;
-    if (slideViewComponent != null) {
-      slideViewComponent.update(this, getCurrentSlide());
-    }
   }
 
   public void prevSlide() {
@@ -78,9 +65,5 @@ public class Presentation {
 
   public Slide getCurrentSlide() {
     return getSlide(currentSlideNumber);
-  }
-
-  public void exit(int n) {
-    System.exit(n);
   }
 }

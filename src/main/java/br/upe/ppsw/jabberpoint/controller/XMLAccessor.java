@@ -45,7 +45,7 @@ public class XMLAccessor implements Accessor {
 
   }
 
-  public void loadFile(Presentation presentation, String filename) throws IOException {
+  public Presentation loadFile(Presentation presentation, String filename) throws IOException {
     int slideNumber, itemNumber, max = 0, maxItems = 0;
 
     try {
@@ -82,6 +82,8 @@ public class XMLAccessor implements Accessor {
     } catch (ParserConfigurationException pcx) {
       System.err.println(PCE);
     }
+    
+    return presentation;
 
   }
 

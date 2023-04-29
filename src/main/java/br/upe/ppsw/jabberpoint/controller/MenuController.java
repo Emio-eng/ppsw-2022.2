@@ -14,6 +14,7 @@ import org.springframework.util.ResourceUtils;
 import br.upe.ppsw.jabberpoint.interfaces.Accessor;
 import br.upe.ppsw.jabberpoint.model.Presentation;
 import br.upe.ppsw.jabberpoint.view.AboutBox;
+import br.upe.ppsw.jabberpoint.view.SlideViewerComponent;
 
 public class MenuController extends MenuBar {
 
@@ -21,6 +22,8 @@ public class MenuController extends MenuBar {
 
   private Frame parent;
   private Presentation presentation;
+  private SlideViewerComponent slideViewerComponent;
+
 
   protected static final String ABOUT = "Sobre";
   protected static final String FILE = "Arquivo";
@@ -36,15 +39,19 @@ public class MenuController extends MenuBar {
   protected static final String VIEW = "Visualizar";
 
   protected static final String TESTFILE = "classpath:test.xml";
+ // protected static final String TESTFILE = "src/main/resources/test.json";
+
   protected static final String SAVEFILE = "classpath:dump.xml";
 
   protected static final String IOEX = "IO Exception: ";
   protected static final String LOADERR = "Erro ao carregar";
   protected static final String SAVEERR = "Erro ao salvar";
 
-  public MenuController(Frame frame, Presentation pres) {
+	public MenuController(Frame frame, Presentation pres, SlideViewerComponent slideViewerComponent) {
     parent = frame;
     presentation = pres;
+	this.slideViewerComponent = slideViewerComponent;
+
 
     MenuItem menuItem;
 
@@ -56,8 +63,11 @@ public class MenuController extends MenuBar {
         presentation.clear();
 
         Accessor xmlAccessor = new XMLAccessor();
+   //     Accessor jsonAccessor = new JSONAccessor();
         try {
           xmlAccessor.loadFile(presentation, ResourceUtils.getFile(TESTFILE).getAbsolutePath());
+       // jsonAccessor.loadFile(pres, TESTFILE);
+
           presentation.setSlideNumber(0);
         } catch (IOException exc) {
           JOptionPane.showMessageDialog(parent, IOEX + exc, LOADERR, JOptionPane.ERROR_MESSAGE);
@@ -95,7 +105,7 @@ public class MenuController extends MenuBar {
 
     menuItem.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent actionEvent) {
-        presentation.exit(0);
+			System.exit(0);
       }
     });
 
@@ -107,6 +117,8 @@ public class MenuController extends MenuBar {
     menuItem.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent actionEvent) {
         presentation.nextSlide();
+		slideViewerComponent.update();
+
       }
     });
 
@@ -115,6 +127,8 @@ public class MenuController extends MenuBar {
     menuItem.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent actionEvent) {
         presentation.prevSlide();
+		slideViewerComponent.update();
+
       }
     });
 

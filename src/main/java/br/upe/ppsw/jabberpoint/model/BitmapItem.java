@@ -9,11 +9,13 @@ import javax.imageio.ImageIO;
 import org.springframework.util.ResourceUtils;
 
 import br.upe.ppsw.jabberpoint.style.Style;
+import br.upe.ppsw.jabberpoint.view.PainterBitmap;
 
 public class BitmapItem extends SlideItem {
 
   private BufferedImage bufferedImage;
   private String imageName;
+private PainterBitmap painter;
 
   protected static final String FILE = "Arquivo ";
   protected static final String NOTFOUND = " não encontrado";
@@ -28,6 +30,8 @@ public class BitmapItem extends SlideItem {
     } catch (IOException e) {
       System.err.println(FILE + imageName + NOTFOUND);
     }
+    
+    painter = new PainterBitmap();
 
   }
 
@@ -38,22 +42,26 @@ public class BitmapItem extends SlideItem {
   public String getName() {
     return imageName;
   }
-
+  @Override
   public Rectangle getBoundingBox(Graphics g, ImageObserver observer, float scale, Style myStyle) {
     return new Rectangle((int) (myStyle.indent * scale), 0,
         (int) (bufferedImage.getWidth(observer) * scale),
         ((int) (myStyle.leading * scale)) + (int) (bufferedImage.getHeight(observer) * scale));
   }
-
-  public void draw(int x, int y, float scale, Graphics g, Style myStyle, ImageObserver observer) {
-    int width = x + (int) (myStyle.indent * scale);
-    int height = y + (int) (myStyle.leading * scale);
-
-    g.drawImage(bufferedImage, width, height, (int) (bufferedImage.getWidth(observer) * scale),
-        (int) (bufferedImage.getHeight(observer) * scale), observer);
-  }
+  
 
   public String toString() {
     return "BitmapItem[" + getLevel() + "," + imageName + "]";
   }
+  
+  
+  public void draw(int x, int y, float scale, Graphics g, Style style, ImageObserver observer) {
+      painter.draw(x, y, scale, g, observer, this);
+  }
+  
+  
+public BufferedImage getBufferedImage() {
+	// TODO Auto-generated method stub
+	return bufferedImage;
+}
 }

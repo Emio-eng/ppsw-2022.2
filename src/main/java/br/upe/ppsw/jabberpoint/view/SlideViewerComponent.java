@@ -45,14 +45,8 @@ public class SlideViewerComponent extends JComponent {
     return new Dimension(WIDTH, HEIGHT);
   }
 
-  public void update(Presentation presentation, Slide data) {
-    if (data == null) {
-      repaint();
-      return;
-    }
-
-    this.presentation = presentation;
-    this.slide = data;
+  public void update() {
+		this.slide = presentation.getCurrentSlide();
     repaint();
     frame.setTitle(presentation.getTitle());
   }
