@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import br.upe.ppsw.jabberpoint.style.Style;
+import br.upe.ppsw.jabberpoint.view.PainterText;
 
 public class TextItem extends SlideItem {
 
@@ -24,12 +24,14 @@ public class TextItem extends SlideItem {
   private static final String EMPTYTEXT = "No Text Given";
   public final static int WIDTH = 1200;
   public final static int HEIGHT = 800;
+  private PainterText painter;
 
 
   public TextItem(int level, String string) {
     super(level);
     text = string;
-  }
+    painter = new PainterText();
+}
 
   public TextItem() {
     this(0, EMPTYTEXT);
@@ -71,30 +73,7 @@ public class TextItem extends SlideItem {
     return new Rectangle((int) (myStyle.indent * scale), 0, xsize, ysize);
   }
 
-  public void draw(int x, int y, float scale, Graphics g, Style myStyle, ImageObserver o) {
-    if (text == null || text.length() == 0) {
-      return;
-    }
-
-    List<TextLayout> layouts = getLayouts(g, myStyle, scale);
-    Point pen = new Point(x + (int) (myStyle.indent * scale), y + (int) (myStyle.leading * scale));
-
-    Graphics2D g2d = (Graphics2D) g;
-    g2d.setColor(myStyle.color);
-
-    Iterator<TextLayout> it = layouts.iterator();
-
-    while (it.hasNext()) {
-      TextLayout layout = it.next();
-
-      pen.y += layout.getAscent();
-      layout.draw(g2d, pen.x, pen.y);
-
-      pen.y += layout.getDescent();
-    }
-  }
-
-  private List<TextLayout> getLayouts(Graphics g, Style s, float scale) {
+  public List<TextLayout> getLayouts(Graphics g, Style s, float scale) {
     List<TextLayout> layouts = new ArrayList<TextLayout>();
 
     AttributedString attrStr = getAttributedString(s, scale);
@@ -111,6 +90,10 @@ public class TextItem extends SlideItem {
     }
 
     return layouts;
+  }
+  
+  public void draw(int x, int y, float scale, Graphics g, Style style, ImageObserver observer) {
+      painter.draw(x, y, scale, g, observer, this);
   }
 
   public String toString() {

@@ -11,8 +11,9 @@ import java.io.IOException;
 import javax.swing.JOptionPane;
 import org.springframework.util.ResourceUtils;
 
-import br.upe.ppsw.jabberpoint.interfaces.Accessor;
+import br.upe.ppsw.jabberpoint.model.Accessor;
 import br.upe.ppsw.jabberpoint.model.Presentation;
+import br.upe.ppsw.jabberpoint.model.XMLAccessor;
 import br.upe.ppsw.jabberpoint.view.AboutBox;
 import br.upe.ppsw.jabberpoint.view.SlideViewerComponent;
 
@@ -22,7 +23,8 @@ public class MenuController extends MenuBar {
 
   private Frame parent;
   private Presentation presentation;
-  private SlideViewerComponent slideViewerComponent;
+
+private SlideViewerComponent slideViewerComponent;
 
 
   protected static final String ABOUT = "Sobre";

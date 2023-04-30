@@ -8,14 +8,13 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import org.springframework.util.ResourceUtils;
 
-import br.upe.ppsw.jabberpoint.style.Style;
 import br.upe.ppsw.jabberpoint.view.PainterBitmap;
 
 public class BitmapItem extends SlideItem {
 
   private BufferedImage bufferedImage;
   private String imageName;
-private PainterBitmap painter;
+  private PainterBitmap painter;
 
   protected static final String FILE = "Arquivo ";
   protected static final String NOTFOUND = " não encontrado";

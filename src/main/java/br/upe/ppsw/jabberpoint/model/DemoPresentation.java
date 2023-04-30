@@ -3,8 +3,6 @@ package br.upe.ppsw.jabberpoint.model;
 import java.io.FileNotFoundException;
 import org.springframework.util.ResourceUtils;
 
-import br.upe.ppsw.jabberpoint.interfaces.Accessor;
-
 public class DemoPresentation implements Accessor {
 
   public Presentation loadFile(Presentation presentation, String unusedFilename)

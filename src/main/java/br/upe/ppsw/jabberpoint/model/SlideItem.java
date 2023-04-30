@@ -4,8 +4,6 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.ImageObserver;
 
-import br.upe.ppsw.jabberpoint.style.Style;
-
 public abstract class SlideItem {
 
   private int level = 0;
@@ -28,5 +26,6 @@ public abstract class SlideItem {
   public  void draw(int x, int y, float scale, Graphics g, Style style,
       ImageObserver observer) {
 }
+  //retirei o abstract para que eu não precise implementar nas classes que tem um extend para slide Item
 
 }

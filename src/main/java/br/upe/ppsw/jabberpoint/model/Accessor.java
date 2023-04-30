@@ -1,8 +1,6 @@
-package br.upe.ppsw.jabberpoint.interfaces;
+package br.upe.ppsw.jabberpoint.model;
 
 import java.io.IOException;
-
-import br.upe.ppsw.jabberpoint.model.Presentation;
 
 public interface Accessor {
 
